@@ -6,6 +6,7 @@ import { userRoutes } from "./src/routes/user.route.js"
 import { categoryRoutes } from "./src/routes/category.route.js"
 import multer from "multer"
 import { productRoutes } from "./src/routes/product.route.js"
+import { documentApi } from "./src/config/document.js"
 
 dotenv.config()
 connectMongoDB()
@@ -23,7 +24,7 @@ app.use("/api/products", productRoutes)
 
 app.get("/", (req, res) => {
     try {
-        res.status(200).send(`<h1>Hello world</h1>`)
+        res.status(200).send(documentApi)
     } catch (error) {
         console.warn(error.message)
     }
