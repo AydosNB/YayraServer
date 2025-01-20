@@ -15,7 +15,7 @@ class ProductCantrollers {
         }
     }
     async createProduct(req, res) {
-        const { name, description, price, countIn, categoryId } = req.body;
+        const { name, description, price, rate, categoryId } = req.body;
         if (!mongoose.Types.ObjectId.isValid(categoryId)) {
             return res.status(400).json({ message: 'Invalid ID format categoryId' });
         }
@@ -34,7 +34,7 @@ class ProductCantrollers {
                 description,
                 image: imageUrl,
                 price,
-                countIn,
+                rate,
                 categoryId
             });
 
