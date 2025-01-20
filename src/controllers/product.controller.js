@@ -2,6 +2,7 @@ import mongoose from "mongoose"
 import { productDTO } from "../dtos/product.dto.js"
 import cloudinary from "../config/cloudinary.js"
 import { productModel } from "../models/product.model.js"
+import { categoryModel } from "../models/category.model.js"
 
 class ProductCantrollers {
     async getAllProduct(req, res) {
@@ -19,6 +20,10 @@ class ProductCantrollers {
             return res.status(400).json({ message: 'Invalid ID format categoryId' });
         }
         try {
+            const category = await categoryModel.findById(categoryId);
+            if (!category) {
+                return res.status(404).json({ message: 'Category not fount is ID' });
+            }
             const uploadResult = await cloudinary.uploader.upload(req.file?.path, {
                 folder: 'user_images',
             });
