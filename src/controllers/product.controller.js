@@ -7,7 +7,8 @@ class ProductCantrollers {
     async getAllProduct(req, res) {
         try {
             const products = await productModel.find()
-            res.status(200).json(products)
+            const productsDto = products.map(product => productDTO(product))
+            res.status(200).json(productsDto)
         } catch (error) {
             res.status(500).json({ message: "Server error", error: error.message })
         }

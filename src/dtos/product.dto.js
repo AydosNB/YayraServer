@@ -5,7 +5,7 @@ export const productDTO = (productData) => {
         description: productData.description,
         image: productData.image,
         price: productData.price,
-        countIn : productData.countIn,
+        rate : productData.rate,
         categoryId: productData.categoryId
     }
 }

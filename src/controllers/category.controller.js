@@ -8,7 +8,8 @@ class CategoryCantrollers {
     async getAllCategory(req, res) {
         try {
             const categories = await categoryModel.find()
-            res.status(200).json(categories)
+            const categoriesDto = categories.map(category => categoryDTO(category))
+            res.status(200).json(categoriesDto)
         } catch (error) {
             res.status(500).json({ message: "Server error", error: error.message })
         }
