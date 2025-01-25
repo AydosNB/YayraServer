@@ -7,6 +7,7 @@ import { authMiddleware } from "../middlewares/auth.middleware.js"
 
 const router = express.Router()
 router.get("/get", authMiddleware, adminMiddleware, userControllers.getAllUser)
+router.get("/get-one", authMiddleware, userControllers.getOneUser)
 router.post("/register", userControllers.registerUser)
 router.post("/login", userControllers.loginUser)
 router.get("/activate/:id", userControllers.activatedUser)
