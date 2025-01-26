@@ -1,5 +1,6 @@
 import nodemailer from "nodemailer"
 import dotenv from "dotenv"
+import { htmlData } from "../config/sendHtml.js"
 
 dotenv.config()
 
@@ -21,12 +22,7 @@ const sendActivationLink = async (email, activatedLink) => {
             from: process.env.SMTP_USER,
             to: email,
             subject: "Account verification",
-            html: `
-              <div>
-                <h4>For activation click on link</h4>
-                <a href="${activatedLink}">Click here !</a>
-              </div>
-            `
+            html: htmlData(activatedLink)
         })
     } catch (error) {
         console.error(error)

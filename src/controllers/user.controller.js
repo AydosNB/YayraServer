@@ -47,7 +47,7 @@ class UserControllers {
             const userDto = userDTO(userData)
 
             const activatedLink = `${process.env.API_URL}/api/users/activate/${userDto.id}`
-            // await sendActivationLink(userDto.email, activatedLink)
+            await sendActivationLink(userDto.email, activatedLink)
 
             res.status(201).json(userDto)
         } catch (error) {
@@ -82,7 +82,7 @@ class UserControllers {
             userData.isActive = true
             await userData.save()
 
-            res.redirect("https://www.comfort-cleaning.uz/")
+            res.redirect("https://click-shop-gamma.vercel.app/profile")
         } catch (error) {
             res.status(500).json({ message: "Server error:" })
         }
