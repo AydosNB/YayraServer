@@ -4,7 +4,7 @@ import { userModel } from "../models/user.model.js";
 
 class OrderControllers {
     async getAllOrder(req, res) {
-        const { userId } = req.params;
+        const userId = req.userId;
         if (!mongoose.Types.ObjectId.isValid(userId)) {
             return res.status(400).json({ message: 'Invalid ID format' });
         }
@@ -24,13 +24,13 @@ class OrderControllers {
     }
 
     async createOrder(req, res) {
-        const { userId } = req.params;
+        const userId = req.userId;
         const { products } = req.body
         if (!mongoose.Types.ObjectId.isValid(userId)) {
             return res.status(400).json({ message: 'Invalid ID format' });
         }
         try {
-            const order = await orderModel.create({userId, products})
+            const order = await orderModel.create({ userId, products })
             const user = await userModel.findById(userId);
             user.orders.push(order._id);
             await user.save();
