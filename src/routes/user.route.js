@@ -12,6 +12,7 @@ router.post("/register", userControllers.registerUser)
 router.post("/login", userControllers.loginUser)
 router.get("/activate/:id", userControllers.activatedUser)
 router.get("/get-orders",authMiddleware, OrderControllers.getAllOrder)
+router.post("/clear-orders",authMiddleware, OrderControllers.clearOrderHistory)
 router.post("/create-order", authMiddleware, activeMiddleware, OrderControllers.createOrder)
 
 

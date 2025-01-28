@@ -3,6 +3,7 @@ export const userDTO = (userData) => {
         id: userData._id,
         userName: userData.userName,
         email: userData.email,
-        isActive : userData.isActive
+        isActive : userData.isActive,
+        isAdmin : userData.isAdmin
     }
 }
