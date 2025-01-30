@@ -24,6 +24,7 @@ const sendActivationLink = async (email, activatedLink) => {
             subject: "Account verification",
             html: htmlData(activatedLink)
         })
+        console.log(transporter)
     } catch (error) {
         console.error(error)
     }
