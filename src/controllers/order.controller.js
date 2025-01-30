@@ -23,6 +23,20 @@ class OrderControllers {
         }
     }
 
+    async getAllOrderAdmin(req, res) {
+        try {
+            const orders = await orderModel.find()
+        
+            if (!orders) {
+                return res.status(404).json({ message: "Order not found" });
+            }
+
+            res.status(200).json(orders);
+        } catch (error) {
+            res.status(500).json({ message: "Server error", error: error.message })
+        }
+    }
+
     async createOrder(req, res) {
         const userId = req.userId;
         const { products } = req.body
