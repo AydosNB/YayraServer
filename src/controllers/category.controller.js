@@ -20,6 +20,7 @@ class CategoryCantrollers {
         try {
             const uploadResult = await cloudinary.uploader.upload(req.file.path, {
                 folder: 'user_images',
+                transformation: [{ fetch_format: "auto", quality: "auto" }]
             });
             const imageUrl = uploadResult.secure_url;
 
@@ -53,6 +54,7 @@ class CategoryCantrollers {
             if (req.file?.path) {
                 const uploadResult = await cloudinary.uploader.upload(req.file.path, {
                     folder: 'user_images',
+                    transformation: [{ fetch_format: "auto", quality: "auto" }]
                 });
                 const imageUrl = uploadResult.secure_url;
                 const categories = await categoryModel.findByIdAndUpdate(id, { ...reqData, image : imageUrl }, { new: true })

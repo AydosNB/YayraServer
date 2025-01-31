@@ -26,6 +26,7 @@ class ProductCantrollers {
             }
             const uploadResult = await cloudinary.uploader.upload(req.file?.path, {
                 folder: 'user_images',
+                transformation: [{ fetch_format: "auto", quality: "auto" }]
             });
             const imageUrl = uploadResult.secure_url;
 
@@ -60,6 +61,7 @@ class ProductCantrollers {
             if (req.file?.path) {
                 const uploadResult = await cloudinary.uploader.upload(req.file.path, {
                     folder: 'user_images',
+                    transformation: [{ fetch_format: "auto", quality: "auto" }]
                 });
                 const imageUrl = uploadResult.secure_url;
                 const products = await productModel.findByIdAndUpdate(id, { ...reqData, image: imageUrl }, { new: true })
